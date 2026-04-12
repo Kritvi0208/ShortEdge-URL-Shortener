@@ -1,6 +1,6 @@
 module url-shortener
 
-go 1.24.4
+go 1.24
 
 require (
 	github.com/avct/uasurfer v0.0.0-20250506104815-f2613aa2d406
