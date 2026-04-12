@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analytics – ShortEdge</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="page-analytics">
+  <!-- Header -->
+  <header>
+    <div class="logo">📊 ShortEdge</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="all.html">All Links</a>
+      <a href="update.html">Update</a>
+      <a href="delete.html">Delete</a>
+      <a href="analytics.html" class="active">Analytics</a>
+      <a href="health.html">Health</a>
+    </nav>
+  </header>
+
+  <!-- Main Section -->
+  <main>
+    <div class="card">
+      <h2>View Analytics</h2>
+      <form id="analyticsForm">
+        <label for="code">Enter Short Code:</label>
+        <input type="text" id="code" placeholder="e.g., A1B2C3" required />
+        <button type="submit">Get Analytics</button>
+      </form>
+
+      <pre id="analyticsResult" class="result-box"></pre>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ShortEdge. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("analyticsForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const code = document.getElementById("code").value.trim();
+      const resultBox = document.getElementById("analyticsResult");
+
+      resultBox.textContent = "Fetching...";
+
+      try {
+        const res = await fetch(`/analytics/${code}`);
+        const text = await res.text();
+
+        resultBox.textContent = text;
+      } catch (err) {
+        resultBox.textContent = "Error fetching analytics.";
+      }
+    });
+  </script>
+</body>
+</html>

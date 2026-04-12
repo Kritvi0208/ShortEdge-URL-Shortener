@@ -1,0 +1,166 @@
+/* Global Styles */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background: #f1f3f9;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: #cfc2f2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #b3a1e0;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #432d92;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #432d92;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: #6b4acc;
+  text-decoration: underline;
+}
+
+/* Main Section */
+main {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 700px;
+}
+
+.card h2 {
+  color: #432d92;
+  margin-bottom: 1.2rem;
+}
+
+/* Form Fields */
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 0.4rem;
+  margin-bottom: 1.2rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #7b5dd8;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #6749c4;
+}
+
+/* Result Box */
+.result-box {
+  margin-top: 20px;
+  background: #f7f3ff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e0d5fa;
+  white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
+}
+
+/* Scrollable Long URLs – used only in output areas */
+.scroll-url {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  background-color: #f4f4f4;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #3a0ca3;
+}
+
+.scroll-url::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scroll-url::-webkit-scrollbar-thumb {
+  background: #c9c2f2;
+  border-radius: 4px;
+}
+
+/* Footer */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  padding: 20px;
+}
+
+/* Special styling only for all.html long URLs */
+body.page-all .scroll-url {
+  border: 1px solid #ddd;
+  background-color: #fefeff;
+}
+
+/* Utility: Hide element */
+.hidden {
+  display: none;
+}
+
+#result {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: #333;
+  background: #f4f4f8;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-top: 16px;
+}
+
+/* Inline Result Styling
+#result p {
+  margin: 6px 0;
+}
+
+#result a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#result a:hover {
+  text-decoration: underline;
+} */

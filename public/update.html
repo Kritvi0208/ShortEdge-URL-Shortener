@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update URL – ShortEdge</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page-update">
+  <!-- Header -->
+  <header>
+    <div class="logo">✏️ ShortEdge</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="all.html">All Links</a>
+      <a href="update.html" class="active">Update</a>
+      <a href="delete.html">Delete</a>
+      <a href="analytics.html">Analytics</a>
+      <a href="health.html">Health</a>
+    </nav>
+  </header>
+
+  <!-- Main Section -->
+  <main>
+    <div class="card">
+      <h2>Update Short Link</h2>
+      <form id="updateForm">
+        <div class="form-group">
+          <label for="updateCode">Short Code to Update:</label>
+          <input type="text" id="updateCode" placeholder="e.g. abc123" required />
+        </div>
+        <div class="form-group">
+          <label for="newLongURL">New Long URL:</label>
+          <input type="url" id="newLongURL" placeholder="e.g. https://example.com/new" required />
+        </div>
+        <div class="form-group">
+          <label for="newVisibility">New Visibility:</label>
+          <select id="newVisibility">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+        </div>
+        <button type="submit">Update</button>
+      </form>
+
+      <pre id="updateResult" class="result-box"></pre>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ShortEdge. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("updateForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const code = document.getElementById("updateCode").value.trim();
+      const newURL = document.getElementById("newLongURL").value.trim();
+      const newVisibility = document.getElementById("newVisibility").value;
+      const result = document.getElementById("updateResult");
+
+      try {
+        const res = await fetch(`/update/${code}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ long_url: newURL, visibility: newVisibility }),
+        });
+
+        const text = await res.text();
+        result.textContent = text;
+      } catch (err) {
+        result.textContent = "Error updating link.";
+      }
+    });
+  </script>
+</body>
+</html>

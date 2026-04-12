@@ -3,12 +3,19 @@ package repository
 import (
 	"database/sql"
 	"fmt"
+	"os"
 
 	_ "github.com/lib/pq"
 )
 
 func NewDB() (*sql.DB, error) {
-connStr := "postgres://postgres:postgres@localhost:5432/url_shortener?sslmode=disable"
+	connStr := os.Getenv("DATABASE_URL")
+	if connStr == "" {
+		connStr = os.Getenv("POSTGRES_URL")
+	}
+	if connStr == "" {
+		connStr = "postgres://postgres:postgres@localhost:5432/url_shortener?sslmode=disable"
+	}
 
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
