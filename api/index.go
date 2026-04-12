@@ -3,18 +3,18 @@ package handler
 import (
 	"net/http"
 	"sync"
-	"url-shortener/internal/app"
+	"url-shortener/appcore"
 )
 
 var (
 	serverOnce sync.Once
 	serverErr  error
-	server     *app.Server
+	server     *appcore.Server
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	serverOnce.Do(func() {
-		server, serverErr = app.NewServer()
+		server, serverErr = appcore.NewServer()
 	})
 
 	if serverErr != nil {
