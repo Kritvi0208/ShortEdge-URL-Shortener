@@ -1,13 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
   "rewrites": [
-    { "source": "/health", "destination": "/api/index?route=health" },
-    { "source": "/shorten", "destination": "/api/index?route=shorten" },
-    { "source": "/metrics", "destination": "/api/index?route=metrics" },
-    { "source": "/all", "destination": "/api/index?route=all" },
-    { "source": "/analytics/:code", "destination": "/api/index?route=analytics&code=:code" },
-    { "source": "/update/:code", "destination": "/api/index?route=update&code=:code" },
-    { "source": "/delete/:code", "destination": "/api/index?route=delete&code=:code" },
-    { "source": "/r/:code", "destination": "/api/index?route=redirect&code=:code" }
+    { "source": "/(.*)", "destination": "/api/index" }
   ]
 }
