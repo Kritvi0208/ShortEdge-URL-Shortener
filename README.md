@@ -1,18 +1,28 @@
-# ShortEdge - MERN URL Shortener
+# 🔗 ShortEdge – URL Shortener 
 
-ShortEdge is a full-stack URL shortener rebuilt for a stronger SDE-style interview story.
-The frontend remains the same lightweight HTML, CSS, and JavaScript experience, while the backend is now structured as a Node.js, Express, and MongoDB service with analytics logging, health checks, and Prometheus-compatible metrics.
+ShortEdge is a full-stack URL shortener rebuilt with a modern backend using **Node.js, Express, and MongoDB**.  
+It preserves the original product experience while upgrading the backend into a **scalable, interview-ready architecture**.
 
-## Why this version
+- Service-oriented backend architecture  
+- Deployment-ready (Vercel)  
+- Analytics + observability focused design  
 
-This branch keeps the original product behavior but moves the backend into a stack that is easier to explain as a software engineering project:
+---
 
-- Express routing for REST-style endpoints
-- MongoDB persistence with Mongoose models
-- service-oriented backend structure
-- redirect analytics logging
-- health and metrics endpoints
-- deployment-ready layout for Vercel
+## Core Features
+
+| Feature | Description |
+|--------|------------|
+| Branded Short Links | Supports custom short codes (e.g., `/r/my-event`) |
+| Public/Private Toggle | Control analytics visibility per link |
+| Link Expiry | Auto-deactivate links after expiry time |
+| Analytics Logging | Tracks visits, browser, and device info |
+| RESTful CRUD API | Create, read, update, delete short links |
+| Device Parsing | Uses `ua-parser-js` for browser/device detection |
+| Metrics Endpoint | Prometheus-compatible metrics via `prom-client` |
+| Frontend UI | Lightweight HTML, CSS, JS interface |
+| Health Check | `/health` for backend + DB status |
+---
 
 ## Tech Stack
 
@@ -22,17 +32,51 @@ This branch keeps the original product behavior but moves the backend into a sta
 - Analytics parsing: `ua-parser-js`
 - Observability: `prom-client`
 - Deployment: Vercel
+  
+---
 
-## Features
+## System Architecture
 
-- Create branded or random short URLs
-- Redirect with visit logging
-- Public or private analytics visibility
-- Optional expiry date for each short link
-- List all active links
-- Update or delete existing links
-- Health check endpoint
-- Metrics endpoint for observability
+```text
+┌────────────────────────────┐
+│  Client (Web / API)        │
+│ ────────────────────────── │
+│ • HTML Web UI              │
+│ • Postman / API Clients    │
+└─────────────┬──────────────┘
+              ▼
+┌────────────────────────────┐
+│ Express Router             │
+│ • Handles routes           │
+│ • Maps endpoints           │
+└─────────────┬──────────────┘
+              ▼
+┌────────────────────────────┐
+│ Route Handlers             │
+│ • Request parsing          │
+│ • Response handling        │
+└─────────────┬──────────────┘
+              ▼
+┌────────────────────────────┐
+│ Service Layer              │
+│ • Business logic           │
+│ • Expiry & visibility      │
+│ • Metrics handling         │
+└─────────────┬──────────────┘
+              ▼
+┌────────────────────────────┐
+│ MongoDB (Mongoose)         │
+│ • URL storage              │
+│ • Visit logs               │
+└─────────────┬──────────────┘
+              ▼
+┌────────────────────────────┐
+│ Analytics + Metrics        │
+│ • ua-parser-js → device    │
+│ • prom-client → metrics    │
+└────────────────────────────┘
+```
+---
 
 ## Project Structure
 
@@ -84,22 +128,48 @@ npm run dev
 
 4. Open the app at `http://localhost:8080`
 
+---
+
+## Demo Screenshots
+
+### Frontend UI
+A minimal, responsive interface for submitting long URLs, choosing custom short codes, toggling visibility, and receiving branded short links.
+![Frontend UI](assets/ui-home.png)
+
+---
+
+### Analytics Dashboard
+Returns rich, real-time analytics per short link 
+![Analytics](assets/get-analytics.png)
+
+---
+
+### All Links
+Lists all shortened links (public/private) with long URL mapping.
+
+![All Links](assets/get-all.png)
+
+---
+
+### Metrics Endpoint
+Prometheus-compatible metrics exposed at `/metrics`.
+
+![Metrics](assets/metrics-page.png)
+
+---
+
 ## Environment Variables
 
 - `PORT` - local server port, default `8080`
 - `MONGODB_URI` - MongoDB connection string
 
-## Interview Positioning
+---
 
-This is best presented as a backend-heavy SDE project:
+## Real-World Use Cases
 
-- designed REST endpoints for URL lifecycle management
-- implemented persistence with MongoDB schemas
-- handled redirect flow and analytics capture
-- exposed operational endpoints for health and metrics
-- preserved the product UI while re-architecting the backend stack
-
-## Notes
-
-- The original Go files are still present in the repo for reference, but this branch is organized around the MERN backend implementation.
-- The frontend pages in `public/` are the ones served by the Express app.
+* Custom short links for Google Forms, PDFs, feedback links
+* Private academic resource sharing
+* Insight collection for link click-through rate
+* Prometheus-ready analytics for observability dashboards
+  
+---
